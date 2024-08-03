@@ -23,3 +23,15 @@ React项目创建
 npx create-react-app web
 启动项目
 npm start 
+
+python项目
+
+包安装
+pip install neo4j
+
+
+
+
+neo4j
+登录异常问题
+https://blog.csdn.net/Cai_zi_heng/article/details/133764150
