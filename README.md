@@ -15,12 +15,20 @@ JDK17
 
 
 技术方案
+后端：
+    编程语言：Python
+    数据库：Neo4j（用于存储知识图谱）
+    库：Py2neo（用于与Neo4j交互）
+前端：
+    框架：React
+    库：relation-graph
 
 git地址
 
 React项目创建
 
 npx create-react-app web
+
 启动项目
 npm start 
 
@@ -28,6 +36,7 @@ python项目
 
 包安装
 pip install neo4j
+pip install py2neo
 
 
 

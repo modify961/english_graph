@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import RelationGraph from 'relation-graph-react';
+import { loadAllWords } from '../../utils/wordGraph';
 
 const staticJsonData = {
   rootId: '2',
@@ -72,7 +73,8 @@ const GraphComponent = () => {
   }, []);
 
   const showGraph = async () => {
-    await graphRef.current.setJsonData(staticJsonData, (graphInstance) => {
+    let dataInfo=await loadAllWords()
+    await graphRef.current.setJsonData(dataInfo, (graphInstance) => {
       // Callback after setting the JSON data
     });
   };
