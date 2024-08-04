@@ -2,50 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import RelationGraph from 'relation-graph-react';
 import { loadAllWords } from '../../utils/wordGraph';
 
-const staticJsonData = {
-  rootId: '2',
-  nodes: [
-    { id: '1', text: '节点-1', myicon: 'el-icon-star-on' },
-    { id: '2', text: '节点-2', myicon: 'el-icon-setting', width: 100, height: 100 },
-    { id: '3', text: '节点-3', myicon: 'el-icon-setting' },
-    { id: '4', text: '节点-4', myicon: 'el-icon-star-on' },
-    { id: '6', text: '节点-6', myicon: 'el-icon-setting' },
-    { id: '7', text: '节点-7', myicon: 'el-icon-setting' },
-    { id: '8', text: '节点-8', myicon: 'el-icon-star-on' },
-    { id: '9', text: '节点-9', myicon: 'el-icon-headset' },
-    { id: '71', text: '节点-71', myicon: 'el-icon-headset' },
-    { id: '72', text: '节点-72', myicon: 'el-icon-s-tools' },
-    { id: '73', text: '节点-73', myicon: 'el-icon-star-on' },
-    { id: '81', text: '节点-81', myicon: 'el-icon-s-promotion' },
-    { id: '82', text: '节点-82', myicon: 'el-icon-s-promotion' },
-    { id: '83', text: '节点-83', myicon: 'el-icon-star-on' },
-    { id: '84', text: '节点-84', myicon: 'el-icon-s-promotion' },
-    { id: '85', text: '节点-85', myicon: 'el-icon-sunny' },
-    { id: '91', text: '节点-91', myicon: 'el-icon-sunny' },
-    { id: '92', text: '节点-82', myicon: 'el-icon-sunny' },
-    { id: '5', text: '节点-5', myicon: 'el-icon-sunny' }
-  ],
-  lines: [
-    { from: '7', to: '71', text: '投资' },
-    { from: '7', to: '72', text: '投资' },
-    { from: '7', to: '73', text: '投资' },
-    { from: '8', to: '81', text: '投资' },
-    { from: '8', to: '82', text: '投资' },
-    { from: '8', to: '83', text: '投资' },
-    { from: '8', to: '84', text: '投资' },
-    { from: '8', to: '85', text: '投资' },
-    { from: '9', to: '91', text: '投资' },
-    { from: '9', to: '92', text: '投资' },
-    { from: '1', to: '2', text: '投资' },
-    { from: '3', to: '1', text: '高管' },
-    { from: '4', to: '2', text: '高管' },
-    { from: '6', to: '2', text: '高管' },
-    { from: '7', to: '2', text: '高管' },
-    { from: '8', to: '2', text: '高管' },
-    { from: '9', to: '2', text: '高管' },
-    { from: '1', to: '5', text: '投资' }
-  ]
-};
 
 const NodeSlot = ({ node }) => {
   console.log('NodeSlot:');
@@ -80,7 +36,6 @@ const GraphComponent = () => {
   };
 
   const options = {
-    debug: true,
     defaultLineShape: 1,
     layout: {
       layoutName: 'center',
@@ -100,9 +55,8 @@ const GraphComponent = () => {
   };
 
   return (
-    <div>
-      <div>ok</div>
-      <div style={{ height: 600, width: 900, border: '#efefef solid 1px' }}>
+    <div style={{ height: '100%', width: '100%', margin: 0, padding: 0, overflow: 'hidden' }}>
+      <div style={{ height: '100%', width: '100%', border: '1px solid #efefef' }}>
         <RelationGraph
           ref={graphRef}
           options={options}
