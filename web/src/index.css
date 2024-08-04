@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* markdown样式扩展 */
+.llm-component{
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 95%;
+}

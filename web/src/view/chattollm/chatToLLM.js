@@ -1,13 +1,16 @@
 import React from 'react';
 import '@chatui/core/es/styles/index.less';
 import '@chatui/core/dist/index.css';
+import '../../css/chatui-theme.css';
 import UserPic from '../../images/user.svg'
 import Chat, { Bubble, useMessages } from '@chatui/core';
+import { chatWithLLM } from '../../utils/fetchToLLM';
+import ShowLLMMsg from '../../components/showmsg';
 
 const initialMessages = [
   {
     type: 'text',
-    content: { text: '你好请问有什么可以帮助你' },
+    content: { text: '你好，当前对接的时deepseek商用大模型' },
     user: { avatar: UserPic },
   }
 ];
@@ -24,35 +27,19 @@ const defaultQuickReplies = [
 
 const ChatToLLMComponent = () => {
   // 消息列表
-  const { messages, appendMsg, setTyping } = useMessages(initialMessages);
+  const { messages, appendMsg, updateMsg, setTyping } = useMessages(initialMessages);
 
   // 发送回调
   function handleSend(type, val) {
+    let sedMessage = val.trim();
     if (type === 'text' && val.trim()) {
-      // TODO: 发送请求
-      appendMsg({
-        type: 'text',
-        content: { text: val },
-        user: { avatar: UserPic },
-        position: 'right',
-      });
-
-      setTyping(true);
-
-      // 模拟回复消息
-      setTimeout(() => {
-        appendMsg({
-          type: 'text',
-          user: { avatar: UserPic },
-          content: { text: '亲，您遇到什么问题啦？请简要描述您的问题~' },
-        });
-      }, 1000);
+      chatWithLLM(sedMessage,"deepseek",appendMsg,updateMsg,setTyping)
     }
   }
 
   // 快捷短语回调，可根据 item 数据做出不同的操作，这里以发送文本消息为例
   function handleQuickReplyClick(item) {
-    handleSend('text', item.name);
+    //handleSend('text', item.name);
   }
 
   function renderMessageContent(msg) {
@@ -62,14 +49,10 @@ const ChatToLLMComponent = () => {
     switch (type) {
       case 'text':
         return <Bubble content={content.text} />;
-      case 'image':
-        return (
-          <Bubble type="image">
-            <img src={content.picUrl} alt="" />
-          </Bubble>
-        );
+      case 'llm':
+        return <ShowLLMMsg content={content.text} />;
       default:
-        return null;
+        return <ShowLLMMsg content={content.text} />;
     }
   }
 

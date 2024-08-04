@@ -1,4 +1,4 @@
-const baseUrl=" http://127.0.0.1:8600/"
+const baseUrl="http://127.0.0.1:8600/"
 
 async function fetchToBack(apiName,params){
     let getInfo={
