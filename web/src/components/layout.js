@@ -3,6 +3,7 @@ import { Grid, IconButton, Drawer ,Button} from '@mui/material';
 import { Resizable } from 'react-resizable';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import GraphComponent from '../view/relationgraph/relationGraph';
+import ChatToLLMComponent from '../view/chattollm/chatToLLM';
 import ConfirmDialog  from './confirmDialog';
 import UseConfirmDialog  from './useConfirmDialog';
 
@@ -59,8 +60,8 @@ const Layout = () => {
                 onResize={onResize}
                 resizeHandles={['w']}
               >
-                <div style={{ width: rightPanelWidth, height: '100%', backgroundColor: '#e0e0e0', padding: '16px', paddingBottom: '0px', overflow: 'hidden' }}>
-                  <div style={{ width: rightPanelWidth, height: '60px',overflow: 'hidden'}}>
+                <div style={{ width: rightPanelWidth, height: '100%', backgroundColor: '#e0e0e0', paddingTop: '16px', paddingBottom: '0px', overflow: 'hidden' }}>
+                  <div style={{ width: rightPanelWidth, height: '40px',overflow: 'hidden',marginLeft:'10px'}}>
                     <Button  size="small" variant="outlined" color="error" onClick={deleteAndInit} >
                       删除并初始化全部节点
                     </Button>
@@ -69,9 +70,7 @@ const Layout = () => {
                     </Button>
                   </div>
                   <div style={{ width: rightPanelWidth, height: 'calc(100% - 60px)',overflow: 'hidden' }}>
-                    <h2>Right Panel</h2>
-                    <p>This is the right panel area.</p>
-                    
+                    <ChatToLLMComponent />
                   </div>
                 </div>
               </Resizable>
