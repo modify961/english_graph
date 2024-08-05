@@ -6,6 +6,7 @@ import GraphComponent from '../view/relationgraph/relationGraph';
 import ChatToLLMComponent from '../view/chattollm/chatToLLM';
 import ConfirmDialog  from './confirmDialog';
 import UseConfirmDialog  from './useConfirmDialog';
+import { removeAndInit } from '../utils/wordGraph';
 
 
 const Layout = () => {
@@ -30,7 +31,9 @@ const Layout = () => {
     showConfirmDialog(
       '确认',
       '是否删除并初始化全部节点?',
-      () => alert('Confirmed!')
+      async () => {
+        removeAndInit()
+      }
     );
   };
 

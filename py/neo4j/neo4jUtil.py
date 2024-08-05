@@ -32,11 +32,12 @@ class Neo4jUtil:
     def get_all_nodes_and_relationships(self):
         query = """
         MATCH (n)-[r]->(m)
-        RETURN id(n) AS from_id, n.name AS from_name, id(m) AS to_id, m.name AS to_name, type(r) AS relationship
+        WHERE n.name <> 'note'
+        RETURN id(n) AS from_id, n.name AS from_name,n.type AS from_type, id(m) AS to_id, m.name AS to_name, type(r) AS relationship
         UNION
         MATCH (n)
-        WHERE NOT (n)-[]->()
-        RETURN id(n) AS from_id, n.name AS from_name, null AS to_id, null AS to_name, null AS relationship
+        WHERE NOT (n)-[]->() AND n.name <> 'note'
+        RETURN id(n) AS from_id, n.name AS from_name,n.type AS from_type, null AS to_id, null AS to_name, null AS relationship
         """
         return self.graph.run(query).data()
     

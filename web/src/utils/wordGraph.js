@@ -17,3 +17,8 @@ async function fetchToBack(apiName,params){
     let result=await fetchToBack("graph",{});
     return result;
   }
+  export async  function removeAndInit(){
+    //获取token
+    let result=await fetchToBack("removeAndInit",{});
+    return result;
+  }

@@ -4,13 +4,18 @@ class ConvertToGraph:
     def convert_to_custom_format(data):
         nodes = {}
         lines = []
-    
+
+        rootId=""
         for record in data:
             from_id = str(record['from_id'])
             from_name = record['from_name']
+            from_type= record['from_type']
             to_id = record['to_id']
             relationship = record['relationship']
             
+            if from_type=="mate":
+                rootId = from_id
+
             if from_id not in nodes:
                 nodes[from_id] = {"id": from_id, "text": from_name, "myicon": "el-icon-star-on"}
             
@@ -22,7 +27,7 @@ class ConvertToGraph:
                 lines.append({"from": from_id, "to": to_id, "text": relationship})
         
         result = {
-            "rootId": next(iter(nodes)) if nodes else '',
+            "rootId": rootId,
             "nodes": list(nodes.values()),
             "lines": lines
         }

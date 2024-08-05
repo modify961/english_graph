@@ -18,6 +18,17 @@ def get_graph():
     date=ConvertToGraph.convert_to_custom_format(graph_data)
     return jsonify(date)
 
+@app.route("/removeAndInit", methods=["POST"])
+def removeAndInit():
+    word_graph = WordGraph()
+    word_graph.delete_all()
+    word_graph.creat_meta()
+    date={
+        "code":200,
+        "message":"删除成功"
+    }
+    return jsonify(date)
+
 @app.route('/chatToLLMBySteam', methods=['POST'])
 def proxy():
     # 从 POST 请求中提取参数
